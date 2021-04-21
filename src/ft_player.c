@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-t_plr	*create_plr(int x, int y, float dir)
+void	*create_plr(int x, int y, float dir, t_game **game)
 {
 	t_plr	*new_plr;
 
@@ -20,7 +20,7 @@ t_plr	*create_plr(int x, int y, float dir)
 	new_plr->x = (float)x * SCALE;
 	new_plr->y = (float)y * SCALE;
 	new_plr->dir = dir;
-	return (new_plr);
+	(*game)->plr = new_plr;
 }
 
 void	plr_move(int kc, t_game *game)

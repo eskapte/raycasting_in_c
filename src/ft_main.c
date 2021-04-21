@@ -14,10 +14,10 @@
 
 static void	get_txts(t_win *win, t_txts *txts)
 {
-	txts->img = mlx_xpm_file_to_image(win->mlx, txts->src, &txts->width, 
-														&txts->height);
-	txts->addr = mlx_get_data_addr(txts->img, &txts->bpp, &txts->l_len, 
-													&txts->en);
+	txts->img = mlx_xpm_file_to_image(win->mlx, txts->src, &txts->width,
+			&txts->height);
+	txts->addr = mlx_get_data_addr(txts->img, &txts->bpp, &txts->l_len,
+			&txts->en);
 }
 
 static	void	init_game(t_game **game)
@@ -31,7 +31,8 @@ static	void	init_game(t_game **game)
 	win->win = mlx_new_window(win->mlx, WIDTH, HEIGHT, "Cub3d");
 	win->img = mlx_new_image(win->mlx, WIDTH, HEIGHT);
 	win->addr = mlx_get_data_addr(win->img, &win->bpp, &win->l_len, &win->en);
-	(*game)->txts = callocl(4, sizeof(t_txts));
+	(*game)->txts = callocl(5, sizeof(t_txts));
+	(*game)->d_rays = callocl(WIDTH + 1, sizeof(float));
 }
 
 int	main(void)
@@ -43,11 +44,13 @@ int	main(void)
 	game->txts[0].src = "src/img/stone.xpm";
 	game->txts[1].src = "src/img/wood.xpm";
 	game->txts[2].src = "src/img/diamond.xpm";
-	game->txts[3].src = "src/img/creeper.xpm";
+	game->txts[3].src = "src/img/cobblestone.xpm";
+	game->txts[4].src = "src/img/creeper.xpm";
 	get_txts(game->win, &game->txts[0]);
 	get_txts(game->win, &game->txts[1]);
 	get_txts(game->win, &game->txts[2]);
 	get_txts(game->win, &game->txts[3]);
+	get_txts(game->win, &game->txts[4]);
 	render(game);
 	mlx_hook(game->win->win, 2, 1L << 0, plr_move, game);
 	mlx_loop(game->win->mlx);

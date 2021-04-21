@@ -41,12 +41,11 @@ static	char	**make_map(t_list *lst_map)
 	return (map);
 }
 
-static	t_plr	*find_plr(char	**map)
+static	void	find_objs(char	**map, t_game **game)
 {
 	int		y;
 	int		x;
 	int		c;
-	t_plr	*plr;
 
 	x = 0;
 	y = 0;
@@ -56,13 +55,16 @@ static	t_plr	*find_plr(char	**map)
 		{
 			c = map[y][x];
 			if ((c == 'N') || (c == 'S') || (c == 'W') || (c == 'E'))
-				return (create_plr(x, y, get_dir(c)));
+				create_plr(x, y, get_dir(c), game);
+			if (c == '2')
+				add_sprite(&((*game)->sprites), x, y);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-	exit_with_error("the player doesn't exist");
+	if ((*game)->plr == NULL)
+		exit_with_error("the player doesn't exist");
 }
 
 void	parser(char *map, t_game **game)
@@ -86,6 +88,6 @@ void	parser(char *map, t_game **game)
 	}
 	ft_lstadd_back(&map_data, ft_lstnew(line));
 	(*game)->map = make_map(map_data);
-	(*game)->plr = find_plr((*game)->map);
+	find_objs((*game)->map, game);
 	close(fd);
 }

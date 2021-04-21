@@ -35,6 +35,7 @@ void	ray_cast(t_game *game)
 	float	start;
 	float	end;
 	int		x;
+	float	dist;
 
 	ray.dir = game->plr->dir;
 	start = ray.dir - (M_PI_2 / 3);
@@ -43,8 +44,10 @@ void	ray_cast(t_game *game)
 	while (start <= end)
 	{
 		cast(game, &ray, start);
-		draw_line(game, get_d(game->plr->x, game->plr->y, ray.x, ray.y)
-			* cos(ray.dir - start), x++, &ray);
+		dist = get_d(game->plr->x, game->plr->y, ray.x, ray.y);
+		draw_line(game, dist * cos(ray.dir - start), x++, &ray);
+		game->d_rays[x] = dist;
 		start += (M_PI_2 / 1.5) / WIDTH;
 	}
+	game->d_rays[x] = -1;
 }

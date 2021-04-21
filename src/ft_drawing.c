@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-static void	pixel_put(t_win *win, int x, int y, int color)
+void	pixel_put(t_win *win, int x, int y, int color)
 {
 	char	*dst;
 
@@ -20,7 +20,7 @@ static void	pixel_put(t_win *win, int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-static	int	get_pixel(t_game **game, int x, int y, int i)
+int	get_pixel(t_game **game, int x, int y, int i)
 {
 	char	*dst;
 
@@ -44,35 +44,40 @@ int	get_side(t_ray *ray)
 	return (side);
 }
 
-void	draw_line(t_game *game, float dst, int x, t_ray *ray)
+static	int	draw_wall(t_game *game, int y, t_line *line, t_ray *ray)
 {
-	int		y;
-	float	line;
-	float	sky;
-	int		j;
-	int		color;
-	int		side;
+	int	side;
+	int	color;
 
-	line = HEIGHT / dst * SCALE;
-	sky = HEIGHT / 2 - (line / 2);
-	y = 0;
-	j = 0;
-	if (sky < 0)
-		j = fabs(sky);
-	while (y < sky && y < HEIGHT - 1)
-		mlx_pixel_put(game->win->mlx, game->win->win, x, y++,
-			int_to_hex(0, 186, 255));
-	while (y < line + sky && y < HEIGHT - 1)
+	while (y < line->wall + line->sky && y < HEIGHT - 1)
 	{
 		side = get_side(ray);
 		if (side < 2)
-			color = get_pixel(&game, ray->hitx * SCALE, j * SCALE / line, side);
+			color = get_pixel(&game, ray->hitx * SCALE - 1, SCALE * line->j++
+					/ line->wall + 1, side);
 		else
-			color = get_pixel(&game, ray->hity * SCALE, j * SCALE / line, side);
-		mlx_pixel_put(game->win->mlx, game->win->win, x, y++, color);
-		j++;
+			color = get_pixel(&game, ray->hity * SCALE - 1, SCALE * line->j++
+					/ line->wall + 1, side);
+		pixel_put(game->win, line->x, y++, color);
 	}
+	return (y);
+}
+
+void	draw_line(t_game *game, float dst, int x, t_ray *ray)
+{
+	int		y;
+	t_line	line;
+
+	line.wall = HEIGHT / dst * SCALE;
+	line.sky = HEIGHT / 2 - (line.wall / 2);
+	line.j = 0;
+	line.x = x;
+	y = 0;
+	if (line.sky < 0)
+		line.j = fabs(line.sky);
+	while (y < line.sky && y < HEIGHT - 1)
+		pixel_put(game->win, x, y++, int_to_hex(0, 186, 255));
+	y = draw_wall(game, y, &line, ray);
 	while (y < HEIGHT - 1)
-		mlx_pixel_put(game->win->mlx, game->win->win, x, y++,
-			int_to_hex(255, 186, 100));
+		pixel_put(game->win, x, y++, int_to_hex(255, 186, 100));
 }

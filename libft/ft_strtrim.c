@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 14:16:14 by lhawick           #+#    #+#             */
-/*   Updated: 2020/11/19 19:57:37 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 13:17:47 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ static int	inlist(char const ch, char const *set)
 	return (0);
 }
 
-char		*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
-	char			*trimmed;
 	unsigned int	j;
 	unsigned int	i;
 
@@ -35,13 +34,11 @@ char		*ft_strtrim(char const *s1, char const *set)
 	while (inlist(s1[i], set) && i < ft_strlen(s1))
 		i++;
 	if (i == ft_strlen(s1))
-	{
-		trimmed = ft_substr("", 0, 1);
-		return (trimmed);
-	}
+		return (ft_substr("", 0, 1));
 	j = ft_strlen(s1) - 1;
 	while (inlist(s1[j], set) && j >= i)
 		j--;
-	trimmed = (j >= i) ? ft_substr(s1, i, j - i + 1) : ft_substr("", 0, 1);
-	return (trimmed);
+	if (j >= i)
+		return (ft_substr(s1, i, j - i + 1));
+	return (ft_substr("", 0, 1));
 }

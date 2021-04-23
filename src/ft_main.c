@@ -24,28 +24,26 @@ static	void	init_game(t_game **game)
 {
 	t_win	*win;
 
-	*game = callocl(1, sizeof(t_game));
 	win = callocl(1, sizeof(t_win));
 	(*game)->win = win;
 	win->mlx = mlx_init();
-	win->win = mlx_new_window(win->mlx, WIDTH, HEIGHT, "Cub3d");
-	win->img = mlx_new_image(win->mlx, WIDTH, HEIGHT);
+	if ((*game)->w < 640)
+		(*game)->w = 640;
+	if ((*game)->h < 480)
+		(*game)->h = 480;
+	win->win = mlx_new_window(win->mlx, (*game)->w, (*game)->h, "Cub3d");
+	win->img = mlx_new_image(win->mlx, (*game)->w, (*game)->h);
 	win->addr = mlx_get_data_addr(win->img, &win->bpp, &win->l_len, &win->en);
-	(*game)->txts = callocl(5, sizeof(t_txts));
-	(*game)->d_rays = callocl(WIDTH + 1, sizeof(float));
+	(*game)->d_rays = callocl((*game)->w + 1, sizeof(float));
 }
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
 	t_game	*game;
 
+	game = callocl(1, sizeof(t_game));
+	parser(argv[1], &game);
 	init_game(&game);
-	parser("hz", &game);
-	game->txts[0].src = "src/img/stone.xpm";
-	game->txts[1].src = "src/img/wood.xpm";
-	game->txts[2].src = "src/img/diamond.xpm";
-	game->txts[3].src = "src/img/cobblestone.xpm";
-	game->txts[4].src = "src/img/creeper.xpm";
 	get_txts(game->win, &game->txts[0]);
 	get_txts(game->win, &game->txts[1]);
 	get_txts(game->win, &game->txts[2]);

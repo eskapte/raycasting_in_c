@@ -16,8 +16,8 @@ static	void	cast(t_game *game, t_ray *ray, float dir)
 {
 	ray->x = game->plr->x;
 	ray->y = game->plr->y;
-	ray->delta_x = cos(dir) / 5;
-	ray->delta_y = sin(dir) / 5;
+	ray->delta_x = cos(dir) / 3;
+	ray->delta_y = sin(dir) / 3;
 	while (game->map[(int)(ray->y / SCALE)][(int)(ray->x / SCALE)] != '1')
 	{
 		ray->old_x = (int)ray->x;
@@ -47,7 +47,7 @@ void	ray_cast(t_game *game)
 		dist = get_d(game->plr->x, game->plr->y, ray.x, ray.y);
 		draw_line(game, dist * cos(ray.dir - start), x++, &ray);
 		game->d_rays[x] = dist;
-		start += (M_PI_2 / 1.5) / WIDTH;
+		start += (M_PI_2 / 1.5) / game->w;
 	}
 	game->d_rays[x] = -1;
 }

@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 19:50:01 by lhawick           #+#    #+#             */
-/*   Updated: 2020/11/10 23:57:26 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 12:49:05 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		p_dest[i] = ((unsigned char*)src)[i];
+		p_dest[i] = ((unsigned char *)src)[i];
 		i++;
 	}
 	return (dest);

@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/02 20:53:47 by lhawick           #+#    #+#             */
-/*   Updated: 2020/11/11 01:17:49 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 12:50:55 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	i = 0;
 	while (i < n)
 	{
-		if (((unsigned char*)s1)[i] == ((unsigned char*)s2)[i])
+		if (((unsigned char *)s1)[i] == ((unsigned char *)s2)[i])
 			i++;
 		else
-			return (((unsigned char*)s1)[i] - ((unsigned char*)s2)[i]);
+			return (((unsigned char *)s1)[i] - ((unsigned char *)s2)[i]);
 	}
 	return (0);
 }

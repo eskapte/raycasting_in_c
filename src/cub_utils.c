@@ -32,3 +32,15 @@ int	int_to_hex(int r, int g, int b)
 {
 	return (r << 16 | g << 8 | b);
 }
+
+int	arr_len(char **arr)
+{
+	int	i;
+
+	if (arr == NULL)
+		return (0);
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}

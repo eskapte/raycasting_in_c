@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/01 22:40:31 by lhawick           #+#    #+#             */
-/*   Updated: 2020/11/11 01:16:05 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 12:51:13 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	unsigned char		*p_dest;
 	const unsigned char	*p_src;
 
-	p_dest = (unsigned char*)dest;
-	p_src = (unsigned char*)src;
+	p_dest = (unsigned char *)dest;
+	p_src = (unsigned char *)src;
 	i = 0;
 	if (!dest && !src)
 		return (0);

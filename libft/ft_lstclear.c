@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 06:25:55 by lhawick           #+#    #+#             */
-/*   Updated: 2020/11/15 20:05:24 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 12:46:56 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
-	t_list *node;
-	t_list *rmv;
+	t_list	*node;
+	t_list	*rmv;
 
 	rmv = *lst;
 	while (rmv)

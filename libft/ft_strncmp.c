@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 17:58:30 by lhawick           #+#    #+#             */
-/*   Updated: 2020/11/11 19:08:02 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 12:54:36 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	unsigned char	*p_s1;
 	unsigned char	*p_s2;
 
-	p_s1 = (unsigned char*)s1;
-	p_s2 = (unsigned char*)s2;
+	p_s1 = (unsigned char *)s1;
+	p_s2 = (unsigned char *)s2;
 	i = 0;
 	while (i < n)
 	{

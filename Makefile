@@ -16,7 +16,8 @@ CC =	gcc
 
 SRC =	src/ft_main.c gnl/get_next_line.c gnl/get_next_line_utils.c \
 		src/cub_utils.c src/ft_parcer.c src/ft_errors.c src/ft_render.c \
-		src/ft_rays.c src/ft_player.c src/ft_drawing.c src/ft_sprites.c
+		src/ft_rays.c src/ft_player.c src/ft_drawing.c src/ft_sprites.c \
+		src/textures_parser.c src/texture_parser2.c
 
 OBJS = $(SRC:.c=.o)
 
@@ -29,6 +30,8 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	make bonus -C libft/
+	make -C mlx_linux/
+	mv mlx_linux/libmlx.a ./
 	#$(CC) $(CFLAGS) $(OBJS) -o $(NAME) -L./libft -lft -Lmlx -lmlx -framework OpenGL -framework Appkit
 	# make clean
 	 $(CC) $(CFLAGS) -o $(NAME) $(OBJS) -Llibmlx -lmlx -lX11 -lbsd \

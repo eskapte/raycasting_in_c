@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 23:29:32 by lhawick           #+#    #+#             */
-/*   Updated: 2021/04/09 23:53:22 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 13:17:20 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_putstr_fd(char *s, int fd)
 	while (*s != '\0')
 	{
 		if (!(write(fd, s, 1)))
-			return (void)(0);
+			return ((void)(0));
 		s++;
 	}
 }

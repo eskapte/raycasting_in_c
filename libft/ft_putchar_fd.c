@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 23:20:29 by lhawick           #+#    #+#             */
-/*   Updated: 2021/04/09 23:52:21 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 12:51:26 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,5 @@
 void	ft_putchar_fd(char c, int fd)
 {
 	if (!(write(fd, &c, 1)))
-		return (void)(0);
+		return ((void)(0));
 }

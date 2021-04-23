@@ -1,3 +1,13 @@
+R 1 1
+NO src/img/wood.xpm
+SO src/img/stone.xpm
+WE src/img/cobblestone.xpm
+EA src/img/diamond.xpm
+
+S src/img/creeper.xpm
+F 255,186,100
+C 0,186,255
+
         1111111111111111111111111
         1000000000110000000000001
         1011002001110000001000001

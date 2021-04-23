@@ -49,7 +49,7 @@ static	int	draw_wall(t_game *game, int y, t_line *line, t_ray *ray)
 	int	side;
 	int	color;
 
-	while (y < line->wall + line->sky && y < HEIGHT - 1)
+	while (y < line->wall + line->sky && y < game->h - 1)
 	{
 		side = get_side(ray);
 		if (side < 2)
@@ -68,16 +68,16 @@ void	draw_line(t_game *game, float dst, int x, t_ray *ray)
 	int		y;
 	t_line	line;
 
-	line.wall = HEIGHT / dst * SCALE;
-	line.sky = HEIGHT / 2 - (line.wall / 2);
+	line.wall = game->h / dst * SCALE;
+	line.sky = game->h / 2 - (line.wall / 2);
 	line.j = 0;
 	line.x = x;
 	y = 0;
 	if (line.sky < 0)
 		line.j = fabs(line.sky);
-	while (y < line.sky && y < HEIGHT - 1)
-		pixel_put(game->win, x, y++, int_to_hex(0, 186, 255));
+	while (y < line.sky && y < game->h - 1)
+		pixel_put(game->win, x, y++, game->c_color);
 	y = draw_wall(game, y, &line, ray);
-	while (y < HEIGHT - 1)
-		pixel_put(game->win, x, y++, int_to_hex(255, 186, 100));
+	while (y < game->h - 1)
+		pixel_put(game->win, x, y++, game->f_color);
 }

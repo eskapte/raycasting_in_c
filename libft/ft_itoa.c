@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 00:03:56 by lhawick           #+#    #+#             */
-/*   Updated: 2020/11/12 19:24:25 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 12:45:59 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static	int	num_len(int n)
 	return (len);
 }
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
 	int		len;
 	char	*num;

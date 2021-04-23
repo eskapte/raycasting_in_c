@@ -6,7 +6,7 @@
 /*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 03:22:22 by lhawick           #+#    #+#             */
-/*   Updated: 2020/11/11 02:16:01 by lhawick          ###   ########.fr       */
+/*   Updated: 2021/04/22 12:54:09 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ char	*ft_strchr(const char *s, int c)
 	while (*s != '\0')
 	{
 		if (*s == (char)c)
-			return ((char*)s);
+			return ((char *)s);
 		s++;
 	}
 	if (c == '\0')
-		return ((char*)s);
+		return ((char *)s);
 	return (0);
 }

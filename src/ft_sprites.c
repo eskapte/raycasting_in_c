@@ -32,7 +32,7 @@ void	sort_sprites(t_game **game, float px, float py)
 
 	sprites = (*game)->sprites;
 	start = sprites;
-	while (start->next)
+	while (start && start->next)
 	{
 		while (sprites->next)
 		{
@@ -61,11 +61,11 @@ static	void	draw(t_game *game, t_sprt *sprt, float s_dst, t_txts *txts)
 	j = 0;
 	while (j++ < sprt->height)
 	{
-		if (sprt->v_offset + j < 0 || sprt->v_offset + j > HEIGHT)
+		if (sprt->v_offset + j < 0 || sprt->v_offset + j > game->h)
 			continue ;
 		while (i++ < sprt->width)
 		{
-			if (sprt->h_offset + i < 0 || sprt->h_offset + i > WIDTH
+			if (sprt->h_offset + i < 0 || sprt->h_offset + i > game->w
 				|| s_dst > game->d_rays[(int)sprt->h_offset + i])
 				continue ;
 			color = get_pixel(&game, i * txts[4].width / sprt->width,
@@ -89,8 +89,8 @@ void	draw_sprite(t_game **game, t_sprt *sprt)
 	s_dst = get_d((*game)->plr->x, (*game)->plr->y, sprt->x, sprt->y);
 	sprt->width = (*game)->txts[4].width / s_dst * SCALE;
 	sprt->height = (*game)->txts[4].height / s_dst * SCALE;
-	sprt->h_offset = (s_dir - (*game)->plr->dir) * (WIDTH) / (M_PI_2 / 1.5)
-		+ (WIDTH / 2) - sprt->width / 2;
-	sprt->v_offset = HEIGHT / 2;
+	sprt->h_offset = (s_dir - (*game)->plr->dir) * ((*game)->w) / (M_PI_2 / 1.5)
+		+ ((*game)->w / 2) - sprt->width / 2;
+	sprt->v_offset = (*game)->h / 2;
 	draw(*game, sprt, s_dst, (*game)->txts);
 }

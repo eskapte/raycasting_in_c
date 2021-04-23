@@ -23,28 +23,25 @@ void	*create_plr(int x, int y, float dir, t_game **game)
 	(*game)->plr = new_plr;
 }
 
+static void	move(t_plr *plr, char **map, float dx, float dy)
+{
+	if (map[(int)((plr->y + STEP * dy) / SCALE)][(int)((plr->x + STEP * dx)
+		/ SCALE)] == '1')
+		return ;
+	plr->x += STEP * dx;
+	plr->y += STEP * dy;
+}
+
 void	plr_move(int kc, t_game *game)
 {
 	if (kc == W)
-	{
-		game->plr->y += STEP * sin(game->plr->dir);
-		game->plr->x += STEP * cos(game->plr->dir);
-	}
+		move(game->plr, game->map, cos(game->plr->dir), sin(game->plr->dir));
 	if (kc == S)
-	{
-		game->plr->y -= STEP * sin(game->plr->dir);
-		game->plr->x -= STEP * cos(game->plr->dir);
-	}
+		move(game->plr, game->map, -cos(game->plr->dir), -sin(game->plr->dir));
 	if (kc == A)
-	{
-		game->plr->x += STEP * sin(game->plr->dir);
-		game->plr->y -= STEP * cos(game->plr->dir);
-	}
+		move(game->plr, game->map, sin(game->plr->dir), -cos(game->plr->dir));
 	if (kc == D)
-	{
-		game->plr->x -= STEP * sin(game->plr->dir);
-		game->plr->y += STEP * cos(game->plr->dir);
-	}
+		move(game->plr, game->map, -sin(game->plr->dir), cos(game->plr->dir));
 	if (kc == LEFT || kc == 65361)
 		game->plr->dir -= (M_PI_2 / 9);
 	if (kc == RIGHT || kc == 65363)

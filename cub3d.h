@@ -1,18 +1,6 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-#include "../mlx_linux/mlx.h"
-#include "../libft/libft.h"
-#include "../gnl/get_next_line.h"
-#include <fcntl.h>
-#include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-#include <math.h>
-
-
 # define WIDTH 1201
 # define HEIGHT 801
 # define SCALE 16
@@ -28,7 +16,18 @@
 # define DOWN 125
 # define LEFT 123
 # define RIGHT 124
-# define STEP 5
+# define STEP 3
+
+# include "mlx_linux/mlx.h"
+# include "libft/libft.h"
+# include "gnl/get_next_line.h"
+# include <fcntl.h>
+# include <unistd.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <errno.h>
+# include <math.h>
 
 typedef struct s_plr
 {
@@ -37,7 +36,7 @@ typedef struct s_plr
 	float		dir;
 }				t_plr;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	int			old_x;
 	int			old_y;
@@ -50,7 +49,7 @@ typedef struct	s_ray
 	float		hity;
 }				t_ray;
 
-typedef struct	s_win
+typedef struct s_win
 {
 	void		*mlx;
 	void		*win;
@@ -61,7 +60,7 @@ typedef struct	s_win
 	int			en;
 }				t_win;
 
-typedef struct	s_txts
+typedef struct s_txts
 {
 	void		*addr;
 	int			l_len;
@@ -73,7 +72,7 @@ typedef struct	s_txts
 	int			en;
 }				t_txts;
 
-typedef	struct	s_sprt
+typedef struct s_sprt
 {
 	float		x;
 	float		y;
@@ -83,7 +82,7 @@ typedef	struct	s_sprt
 	float		v_offset;
 }				t_sprt;
 
-typedef struct	s_line
+typedef struct s_line
 {
 	float		sky;
 	float		wall;
@@ -91,7 +90,7 @@ typedef struct	s_line
 	int			j;
 }				t_line;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_win		*win;
 	t_plr		*plr;
@@ -99,6 +98,10 @@ typedef struct	s_game
 	char		**map;
 	t_list		*sprites;
 	float		*d_rays;
+	int			w;
+	int			h;
+	int			f_color;
+	int			c_color;
 }				t_game;
 
 void	exit_with_error(char *e_text);
@@ -117,5 +120,14 @@ void	draw_sprite(t_game **game, t_sprt *sprt);
 int		get_pixel(t_game **game, int x, int y, int i);
 void	sort_sprites(t_game **game, float x, float y);
 void	pixel_put(t_win *win, int x, int y, int color);
+int		arr_len(char **arr);
+void	find_r(t_game **game, t_list *map_data);
+void	find_no(t_game **game, t_list *map_data);
+void	find_so(t_game **game, t_list *map_data);
+void	find_we(t_game **game, t_list *map_data);
+void	find_ea(t_game **game, t_list *map_data);
+void	find_s(t_game **game, t_list *map_data);
+void	find_floor(t_game **game, t_list *map_data);
+void	find_ceil(t_game **game, t_list *map_data);
 
 #endif

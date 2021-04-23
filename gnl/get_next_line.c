@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lhawick <lhawick@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/02 17:13:51 by lhawick           #+#    #+#             */
-/*   Updated: 2021/03/12 16:14:42 by marvin           ###   ########.fr       */
+/*   Updated: 2021/04/22 13:43:23 by lhawick          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ static	char	*join_or_create(char **temp, char *buff, int cnt)
 {
 	char	*new_temp;
 
-	new_temp = (*temp) ? ft_strjoin(*temp, buff) : ft_substr(buff, 0, cnt);
+	if (*temp)
+		new_temp = ft_strjoin(*temp, buff);
+	else
+		new_temp = ft_substr(buff, 0, cnt);
 	if (*temp)
 		free(*temp);
 	return (new_temp);
 }
 
-static	int		get_index_n(char *buff)
+static	int	get_index_n(char *buff)
 {
 	int	i;
 
@@ -62,13 +65,14 @@ static	char	*use_temp(char *temp, char **line)
 	return (temp);
 }
 
-static	int		read_file(int fd, char **temp, char **line)
+static	int	read_file(int fd, char **temp, char **line)
 {
 	int		cnt;
 	char	*buff;
 
-	buff = (char*)malloc(sizeof(char) * (BUFFER_SIZE + 1));
-	while ((cnt = read(fd, buff, BUFFER_SIZE)) >= 0 && !(*line))
+	buff = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	cnt = read(fd, buff, BUFFER_SIZE);
+	while (cnt >= 0 && !(*line))
 	{
 		buff[cnt] = '\0';
 		*temp = join_or_create(temp, buff, cnt);
@@ -79,13 +83,14 @@ static	int		read_file(int fd, char **temp, char **line)
 			return (return_and_free(&buff, 0));
 		if (*line)
 			return (return_and_free(&buff, 1));
+		cnt = read(fd, buff, BUFFER_SIZE);
 	}
 	return (return_and_free(&buff, 0));
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
-	static	char	*temp;
+	static char	*temp;
 
 	if (fd < 0 || !line || BUFFER_SIZE <= 0 || read(fd, "", 0) < 0)
 		return (-1);

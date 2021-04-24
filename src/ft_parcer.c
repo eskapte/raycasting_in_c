@@ -93,7 +93,6 @@ void	parser(char *map, t_game **game)
 	int		i;
 	char	*line;
 
-	map_data = NULL;
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
 		exit_with_error("failed to open the file");

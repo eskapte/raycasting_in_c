@@ -4,14 +4,14 @@
 # define WIDTH 1201
 # define HEIGHT 801
 # define SCALE 16
-# define W 119
-# define S 115
-# define D 100
-# define A 97
-//# define W 1731
-//# define S 1753
-//# define D 1751
-//# define A 1734
+//# define W 119
+//# define S 115
+//# define D 100
+//# define A 97
+# define W 1731
+# define S 1753
+# define D 1751
+# define A 1734
 # define UP 126
 # define DOWN 125
 # define LEFT 123
@@ -53,8 +53,8 @@ typedef struct s_win
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
-	void		*addr;
+	unsigned int *img;
+	char		*addr;
 	int			l_len;
 	int			bpp;
 	int			en;
@@ -130,5 +130,6 @@ void	find_s(t_game **game, t_list *map_data);
 void	find_floor(t_game **game, t_list *map_data);
 void	find_ceil(t_game **game, t_list *map_data);
 void	check_player_inside(char **map, t_plr *plr);
+void	screenshoot(t_game *game);
 
 #endif

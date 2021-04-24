@@ -20,6 +20,8 @@ void	*create_plr(int x, int y, float dir, t_game **game)
 	new_plr->x = (float)x * SCALE;
 	new_plr->y = (float)y * SCALE;
 	new_plr->dir = dir;
+	if ((*game)->plr)
+		exit_with_error("you cant create more than one player");
 	(*game)->plr = new_plr;
 }
 

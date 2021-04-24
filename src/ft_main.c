@@ -52,4 +52,5 @@ int	main(int argc, char *argv[])
 	render(game);
 	mlx_hook(game->win->win, 2, 1L << 0, plr_move, game);
 	mlx_loop(game->win->mlx);
+	// TODO Проверить слишком большое разрешение, сделать скриншоты, доделать валидацию
 }

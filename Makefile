@@ -17,7 +17,7 @@ CC =	gcc
 SRC =	src/ft_main.c gnl/get_next_line.c gnl/get_next_line_utils.c \
 		src/cub_utils.c src/ft_parcer.c src/ft_errors.c src/ft_render.c \
 		src/ft_rays.c src/ft_player.c src/ft_drawing.c src/ft_sprites.c \
-		src/textures_parser.c src/texture_parser2.c
+		src/textures_parser.c src/texture_parser2.c src/validate_map.c
 
 OBJS = $(SRC:.c=.o)
 

@@ -112,5 +112,6 @@ void	parser(char *map, t_game **game)
 	parse_data(game, map_data);
 	(*game)->map = make_map(map_data);
 	find_objs((*game)->map, game);
+	check_player_inside((*game)->map, (*game)->plr);
 	close(fd);
 }
